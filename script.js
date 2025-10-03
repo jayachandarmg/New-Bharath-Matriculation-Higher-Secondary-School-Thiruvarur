@@ -52,10 +52,10 @@ const hscToppers = [
 
 const sportsFacilities = ["⚽ Football", "🏏 Cricket", "🏀 Basketball", "🏃 Athletics", "🏐 Volleyball"];
 const waterFacilities = "💧 Pure RO drinking water in all blocks.";
-const cycleStand = "🚲 Yes, we have a safe cycle stand.";
-const auditorium = "🎭 Yes, we have a large auditorium.";
-const canteen = "🍴 Sorry, our school doesn't have a canteen available.";
-const library = "📚 A library with 5000+ books & digital resources.";
+const cycleStand = "🚲 Safe cycle stand available.";
+const auditorium = "🎭 Large auditorium for events.";
+const canteen = "🍴 No canteen facility available.";
+const library = "📚 Library with 5000+ books & digital resources.";
 
 // ---------- Helper: detect greetings safely ----------
 function isGreeting(text) {
@@ -70,7 +70,7 @@ function getBotReply(rawText) {
     const greetings = [
       "👋 <b>Hello! How can I help you?</b>",
       "👋 <b>Hi! How can I assist you today?</b>",
-      "🤖 <b>Hello! Ask me about admissions, fees, facilities, toppers, competitions, and more!</b>"
+      "🤖 <b>Hello! Ask me about admissions, fees, facilities, competitions, and more!</b>"
     ];
     return greetings[Math.floor(Math.random() * greetings.length)];
   }
@@ -98,6 +98,10 @@ function getBotReply(rawText) {
   if (text.includes("principal")) {
     return `<b>${schoolPrincipal}</b>`;
   }
+ 
+  if (text.includes("school name") || text.includes("name of the school")) {
+    return `<b>${schoolName}</b>`;
+  }
 
   if (text.includes("location") || text.includes("address")) {
     return `<b>${schoolLocation}</b>`;
@@ -119,6 +123,18 @@ function getBotReply(rawText) {
     return "<b>🏆 Last year HSC Toppers:</b><br>" + hscToppers.join("<br>");
   }
 
+  // ---------- New: All facilities with bold headings ----------
+  if (text.includes("facility") || text.includes("facilities")) {
+    return `<b>🏫 School Facilities:</b><br>
+    <b>⚽ Sports:</b><br>${sportsFacilities.join("<br>")}<br><br>
+    <b>💧 Water:</b><br>${waterFacilities}<br><br>
+    <b>🚲 Cycle Stand:</b><br>${cycleStand}<br><br>
+    <b>🎭 Auditorium:</b><br>${auditorium}<br><br>
+    <b>🍴 Canteen:</b><br>${canteen}<br><br>
+    <b>📚 Library:</b><br>${library}`;
+  }
+
+  // Individual facility checks (kept for backward compatibility)
   if (text.includes("sport") || text.includes("games")) {
     return "<b>⚽ Sports Facilities:</b><br>" + sportsFacilities.join("<br>");
   }
@@ -182,7 +198,7 @@ window.onload = function() {
   const chatBox = document.getElementById("chat-box");
   const welcome = [
     "👋 <b>Hello! I’m your assistant from New Bharath Matriculation Higher Secondary School.<br>How can I help you?</b>",
-    "🎓 <b>Welcome! Ask me about admissions, fees, facilities, toppers, competitions, and more!</b>"
+    "🎓 <b>Welcome! Ask me about admissions, fees, facilities, competitions, and more!</b>"
   ];
   const botMsg = document.createElement("div");
   botMsg.classList.add("message", "bot-message");
