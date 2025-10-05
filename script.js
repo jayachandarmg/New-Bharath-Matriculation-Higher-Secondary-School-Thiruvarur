@@ -1,7 +1,7 @@
 // ---------- School Info Data ----------
 const schoolName = "New Bharath Matriculation Higher Secondary School";
 const schoolContact = "📞 Phone: 9876543210 | 📧 Email: newbharathschool@gmail.com";
-const schoolPrincipal = "👨‍🏫 Principal: Dr. N.Muralidhran ";
+const schoolPrincipal = "👨‍🏫 Principal: Dr. N.Muralidharan ";
 const schoolLocation = "📍 New Street, Thiruvarur Main Road, Tamil Nadu";
 const schoolMedium = "📝 Medium: English  Medium";
 const schoolTimings = "🕒 9:00 AM – 4:20 PM";
@@ -210,3 +210,4 @@ window.onload = function() {
 document.getElementById('user-input').addEventListener('keydown', function(e){
   if (e.key === 'Enter') sendMessage();
 });
+
